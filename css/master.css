@@ -1,0 +1,41 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  
+}
+
+.navbar {
+  background: #2d2d2d;
+  overflow: hidden;
+  color: #fff;
+}
+
+.navbar ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  text-align: left;
+  display: inline-block;
+  /* float: left; */
+  width: 100%;
+}
+
+.navbar ul li {
+  display: inline;
+}
+
+.navbar ul li a {
+  display: inline-block;
+  color: #fff;
+  padding: 20px;
+  text-decoration: none;
+  transition: 1s;
+}
+
+.navbar ul li a:hover {
+  color: #ff4242;
+}
+
+.navbar .n-knn {
+  float: right;
+}
