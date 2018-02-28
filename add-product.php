@@ -1,64 +1,33 @@
 <?php require("header.php") ?>
 
-<style media="screen">
-  .container {
-    width: 80%;
-    padding: 0px 1%;
-    margin: 0px auto;
-  }
-  .text-center {
-    text-align: center;
-  }
-  .poster {
-    background: #787878;
-    padding: 2%;
-    color: #fff;
-  }
-  .postre-title {
-    display: block;
-    font-weight: bold;
-  }
-
-  .button {
-    cursor: pointer;
-    color: #fff;
-    margin: 10px;
-    padding: 5px 20px;
-    background: #595959;
-    border: 2px solid;
-    border-color: #8bffb3 #8bffb3 #09fa5c #09fa5c;
-    border-radius: 7px;
-    transition: 1s;
-  }
-  .button:hover {
-    background: #000000;
-  }
-</style>
-
-  <div class="container">
+  <div class="container" style="margin-top: 25px;">
     <div class="poster text-center">
       <span class="poster-title"><h2>Form buat barang baru</h2></span>
       <form class="" action="#" method="post" enctype="multipart/form-data">
         <label for="">Gambar  :</label>
         <input type="file" name="gambar" required>
         <br>
+        <br>
 
         <label for="">Nama Barang : </label>
         <br>
         <input type="text" name="nama" placeholder="Nama Barang" required>
+        <br>
         <br>
 
         <label for="">Deskripsi barang : </label>
         <br>
         <textarea name="description" rows="8" cols="80"></textarea>
         <br>
+        <br>
 
         <label for="">Harga : </label>
         <br>
-        <input type="number" name="harga" value="" step="1000" required>
+        <input type="number" name="harga" min="0" step="1000" required>
+        <br>
         <br>
 
-        <label for="">Tag : </label>
+        <label for="">Type : </label>
         <br>
         <select class="" name="tag">
           <option value="VGA">VGA</option>
@@ -69,10 +38,12 @@
         </select>
 
         <br>
-        <button type="submit" class="button" name="submit">Buat</button>
+        <button type="submit" id="enter" class="button" name="submit">Buat</button>
       </form>
     </div>
   </div>
+
+
 
 <?php
   if( isset($_POST['submit']) )
@@ -87,6 +58,68 @@
     );
 
     // var_dump($barang);
+
+    // VALIDASI GAMBAR DAN UBAH NAMA
+    $gambar = (object) array (
+      'nama' => $_FILES['gambar']['name'],
+      'type' => $_FILES['gambar']['type'],
+      // 'type2' => pathinfo($gambar, PATHINFO_EXTENSION),
+      'asal' => $_FILES['gambar']['tmp_name'],
+      'error' => $_FILES['gambar']['error'],
+      'size' => $_FILES['gambar']['size'],
+    );
+
+    // Sekarang upload ke database dulu
+    $buat = "INSERT INTO product (title, description, price, tag)
+              VALUES ('$barang->nama', '$barang->description', '$barang->harga', '$barang->tag')";
+
+      // var_dump($buat);
+      // die();
+      if( mysqli_query($link, $buat) ){
+        $id_baru = mysqli_insert_id($link);
+        // echo "id barunya adalah" . $last_id;
+      }else{
+        echo "Ada Error";
+
+    }
+
+    // massukkan Gambar ke folder
+    if( $gambar->error == 0 ){
+
+      if( $gambar->type == "image/jpeg" || $gambar->type == "image/png" || $gambar->type == "image/jpg" ){
+
+        if( $gambar->size < 1000000 ){
+          // ganti nama gambar dulu
+          $namafile = str_replace("$gambar->nama", "", $id_baru);
+          $namafile = "img/product/" . $namafile . ".jpg";
+
+          move_uploaded_file($gambar->asal, $namafile);
+
+          ?>
+          <script type="text/javascript">
+            alert("Data berhasil dimasukkan");
+          </script>
+          <?php
+
+        }else {
+          ?>
+          <script type="text/javascript">
+            alert("File tidak boleh lebih dari 1MB");
+          </script>
+          <?php
+        }
+
+      }
+
+    }else {
+      ?>
+      <script type="text/javascript">
+        alert("Ada error");
+      </script>
+      <?php
+    }
+
+
   }
  ?>
 

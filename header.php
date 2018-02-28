@@ -16,7 +16,7 @@
      <!-- Navigasi Bar -->
      <nav class="navbar">
        <ul>
-         <li><a href="#">Home</a></li>
+         <li><a href="index.php">Home</a></li>
          <li><a href="product.php">Product</a></li>
          <li><a href="#">Cara Order</a></li>
          <li><a href="#">FAQ</a></li>

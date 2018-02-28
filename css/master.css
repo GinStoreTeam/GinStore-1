@@ -1,7 +1,7 @@
 body {
   padding: 0px;
   margin: 0px;
-  
+  font-family: Verdana, Geneva, sans-serif;
 }
 
 .navbar {
@@ -38,4 +38,40 @@ body {
 
 .navbar .n-knn {
   float: right;
+}
+
+.container {
+  width: 85%;
+  padding: 0px 1%;
+  margin: 0px auto;
+}
+
+/* -------------- Bagian Product ------------------ */
+.text-center {
+  text-align: center;
+}
+.poster {
+  background: #787878;
+  padding: 2%;
+  color: #fff;
+}
+.postre-title {
+  display: block;
+  font-weight: bold;
+}
+
+.button {
+  font-size: 18px;
+  cursor: pointer;
+  color: #fff;
+  margin: 10px;
+  padding: 5px 20px;
+  background: #595959;
+  border: 2px solid;
+  border-color: #8bffb3 #8bffb3 #09fa5c #09fa5c;
+  border-radius: 7px;
+  transition: 0.8s;
+}
+.button:hover {
+  background: #000000;
 }
