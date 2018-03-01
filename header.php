@@ -11,13 +11,24 @@
     <?php
       // host, nama, password, database
       $link = mysqli_connect("localhost", "root", "", "gin_store");
+
+      // Daftar fungsi
+
+      // translate numeric ke rupiah
+      function rupiah($nilai){
+        // angka, anka dibelakang koma, pemisah desimal, pemisah ribuan
+        $hasil_rupiah = "Rp. " . number_format($nilai, 2, ',', '.');
+        return $hasil_rupiah;
+      }
+
+
      ?>
 
      <!-- Navigasi Bar -->
      <nav class="navbar">
        <ul>
          <li><a href="index.php">Home</a></li>
-         <li><a href="product.php">Product</a></li>
+         <li><a href="index-product.php">Product</a></li>
          <li><a href="#">Cara Order</a></li>
          <li><a href="#">FAQ</a></li>
          <li><a href="#">Order List</a></li>
