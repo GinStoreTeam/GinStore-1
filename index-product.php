@@ -38,12 +38,18 @@
 
 .card-product img {
   width: 100%;
+  height: 300px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .card-container {
   padding: 10px;
   min-height: 150px;
+}
+
+.card-button {
+  /* position: relative; */
+  /* bottom: 0px; */
 }
 </style>
 
@@ -62,14 +68,23 @@
           ?>
           <div class="col-4">
             <div class="card-product">
+
               <a href="product.php?id=<?php echo $data['id']; ?>">
                 <img src='img/product/<?php echo $data['id']; ?>.jpg' alt="">
                 <div class="card-container">
                   <h4><?php echo $data['title']; ?></h4>
-                  <br>
                   <?php echo rupiah( $data['price'] ); ?>
                 </div>
               </a>
+
+              <div class="card-button">
+                <form class="" action="update-product.php" method="get">
+                  <button type="submit" class="button" name="id" value="<?php echo $data['id']; ?>">UPDATE</button>
+
+                </form>
+                <!-- <button type="button" class="button" name="update">UPDATE</button> -->
+              </div>
+
             </div>
 
           </div>
