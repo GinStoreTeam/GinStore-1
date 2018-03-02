@@ -38,7 +38,7 @@
         </select>
 
         <br>
-        <button type="submit" id="enter" class="button" name="submit">Buat</button>
+        <button type="submit" id="enter" class="button button-default" name="submit">Buat</button>
       </form>
     </div>
   </div>
