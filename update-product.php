@@ -66,7 +66,7 @@
         </select>
 
         <br>
-        <button type="submit" id="enter" class="button" name="submit">UPDATE</button>
+        <button type="submit" id="enter" class="button button-default" name="submit">UPDATE</button>
       </form>
     </div>
   </div>
